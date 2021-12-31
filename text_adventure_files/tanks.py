@@ -1,7 +1,7 @@
 class TigerTank:
     def __init__(self):
-        self.heatlh = 1500
+        self.health = 1500
 
 class T34Tank:
     def __init__(self):
-        self.heatlh = 1000
+        self.health = 1000

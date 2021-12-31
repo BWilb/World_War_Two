@@ -6,12 +6,14 @@ class GeorgyZhukov:
         self.thirst = 0
         self.score_card = 0
         self.distance = 0
+        self.current_city = 0
         self.troop_list = []
         self.tank_list = []
+        self.european_locations = []
+        self.pacific_locations = []
         self.food_list = ["food", "food", "food", "food", "food"]
         self.water_list = ["water", "water", "water", "water", "water"]
         self.population = []
-        self.jews = []
 
 class SovietSoldier:
     def __init__(self):

@@ -1,18 +1,22 @@
-import adolf_hitler
-import EuropeanLocations
 import georgy_zhukov
-import hirohito
-import minorities
-import PacificLocations
 import random
+import adolf_hitler
+import adolf_ai
+import EasternEuropeanLocations
 import tanks
+import minorities
 
-def recruitment(georgy):
-    """creation of 2000 to 6000 soviet soldiers"""
-    recruit = (random.randrange(2000, 6000) // 1)
+def initial_recruitment(georgy):
+    """creation of 200,000 to 600,000 soviet soldiers"""
+    recruit = (random.randrange(200000, 600000) // 1)
     for i in range(recruit):
         soldier = georgy_zhukov.SovietSoldier()
         georgy.troop_list.append(soldier)
+
+    t34 = (random.randrange(2000, 4000) // 1)
+    for i in range(t34):
+        tank = tanks.T34Tank()
+        georgy.tank_list.append(tank)
 
 def civilian_count(georgy):
     """Creation of 250,000 to 500,000 civilians"""
@@ -21,18 +25,16 @@ def civilian_count(georgy):
         civ = georgy_zhukov.SovietCivilian()
         georgy.population.append(civ)
 
-
-def t34(georgy):
-    """creation of 200 to 600 T34 tanks"""
-    crappy = (random.randrange(200, 600) // 1)
+def initial_t34_production(georgy):
+    """creation of 5,000 to 8,000 T34 tanks"""
+    crappy = (random.randrange(5000, 8000) // 1)
     for i in range(crappy):
         tank = tanks.T34Tank()
         georgy.tank_list.append(tank)
 
-
-def german_troops(adolf):
-    """initialization of 3000 to 8000 german troops"""
-    rand = (random.randrange(3000, 8000) // 1)
+def initial_german_recruitment(adolf):
+    """initialization of 300,000 to 500,000 german troops"""
+    rand = (random.randrange(300000, 500000) // 1)
     for i in range(rand):
         soldier = adolf_hitler.GermanSoldier()
         adolf.troop_list.append(soldier)
@@ -42,52 +44,116 @@ def german_troops(adolf):
         civ = adolf_hitler.GermanCivilian()
         adolf.population.append(civ)
 
-
 def german_resupply(adolf):
-    german_recruitments = random.randrange(1, 4000)
+    """As the battle wears on, 1 - 400,000 soldiers join the Wehrmacht
+        There is a constant resupply of tanks from 1 - 2,000
+    """
+    german_recruitments = random.randrange(1, 400000)
     for i in range(german_recruitments):
         gerry = adolf_hitler.GermanSoldier()
         adolf.troop_list.append(gerry)
 
+    tiger_production = random.randrange(1, 2000)
+    for i in range(tiger_production):
+        tiger = tanks.TigerTank()
+        adolf.tank_list.append(tiger)
+
+def soviet_resupply(georgy):
+    """As the war continues, 1 - 400,000 soldiers join the Red Army per round
+        There is a constant resupply of tanks from 300 - 5,000
+    """
+    soviet_recruitments = random.randrange(300, 400000)
+    for i in range(soviet_recruitments):
+        soldier = georgy_zhukov.SovietSoldier()
+        georgy.troop_list.append(soldier)
+
+    t34_continued_production = random.randrange(300, 5000)
+    for i in range(t34_continued_production):
+        tank = tanks.T34Tank()
+        georgy.tank_list.append(tank)
 
 def tigers(adolf):
-    """creation of 100 to 400 tiger tanks"""
-    tank = (random.randrange(100, 400) // 1)
+    """creation of 4,000 to 6,000 tiger tanks"""
+    tank = (random.randrange(4000, 6000) // 1)
     for i in range(tank):
         tiger = tanks.TigerTank()
         adolf.tank_list.append(tiger)
 
-
 def jew_list(adolf):
-    """creation of 500,000 jews"""
-    ash = 500000
+    """creation of 400,000 - 600,000 jews"""
+    ash = random.randrange(400000, 600000)
     for i in range(ash):
         jew = minorities.Jew()
         adolf.jews.append(jew)
 
-
-def japanese_troops(hiro_hito):
-    """creation of 5,000 - 6,000 japanese troops
-    Creation of 4,000 - 600,000 japanese civilians
+def random_events(georgy, adolf):
+    """collection of random events
+        1. running across german military units
+        2. running across more food
+        3. running across more water
     """
-    bing_bong = (random.randrange(5000, 6000) // 1)
-    for i in range(bing_bong):
-        bing = hirohito.JapaneseSoldiers()
-        hiro_hito.troop_list.append(bing)
+    german_army_sizes = ["batallion",
+                         "division",
+                         "army group"]
 
-    civilian = (random.randrange(4000, 600000) // 1)
-    for i in range(civilian):
-        civ = hirohito.JapaneseCivilians()
-        hiro_hito.population.append(civ)
+    if georgy.distance % 20 == 2:
+        """random event set for running across german units
+        if distance has a remainder of 2 when divided by 20 this happens
+        """
+        german_military = random.randrange(len(german_army_sizes) // 1)
 
+        if german_military == 1:
+            """German battalion"""
+            kills = 0
+            print("you have come across a german battalion")
+            german_size = (random.randrange(400, 1000) // 1)
+            for attack in range(german_size):
+                adolf.troop_list[attack].health -= random.randrange(0, 251)
+                if adolf.troop_list[attack].health <= 0:
+                    adolf.troop_list.remove(adolf.troop_list[attack])
+                    georgy.score_card += 1
+                    kills += 1
+            print(f"you killed {kills} germans\n")
 
-def chinese_list(hiro_hito):
-    """creation of 250,000 chinese for the japanese to genocide"""
-    bing_bing = 250000
-    for i in range(bing_bing):
-        china = minorities.Chinese()
-        hiro_hito.chinese.append(china)
+        elif german_military == 2:
+            """German division"""
+            print("you have come across a german division")
+            kills = 0
+            german_size = (random.randrange(10000, 15000) // 1)
+            for attack in range(german_size):
+                adolf.troop_list[attack].health -= random.randrange(0, 251)
+                if adolf.troop_list[attack].health <= 0:
+                    adolf.troop_list.remove(adolf.troop_list[attack])
+                    georgy.score_card += 1
+                    kills += 1
+                    print(f"you killed {kills} germans\n")
 
+        elif german_military == 3:
+            """German army group"""
+            print("you have come across a german army group")
+            kills = 0
+            german_size = (random.randrange(100000, 150000) // 1)
+            for attack in range(german_size):
+                adolf.troop_list[attack].health -= random.randrange(0, 251)
+                if adolf.troop_list[attack].health <= 0:
+                    adolf.troop_list.remove(adolf.troop_list[attack])
+                    georgy.score_card += 1
+                    kills += 1
+                    print(f"you killed {kills} germans\n")
+
+    elif georgy.distance % 5 == 4:
+        """Acquiring food provisions"""
+        print("you have come across more food provisions.")
+        answer = input("Do you want to acquire these provisions?: ")
+        if answer.lower() == "y" or answer.lower() == "yes":
+            georgy.food_list.append("food")
+
+    elif georgy.distance % 4 == 3:
+        """Acquiring water provision"""
+        print("you have come across more water provisions")
+        answer = input("Do you want to acquire these provisions?: ")
+        if answer.lower() == "y" or answer.lower() == "yes":
+            georgy.water_list.append("water")
 
 def georgy_eat(georgy):
     """Function that is called if user chooses to eat on the european or western front"""
@@ -110,7 +176,6 @@ def georgy_eat(georgy):
             georgy.food_list.remove(georgy.food_list[middle_pos])
             break
     print("you chose to eat\n")
-
 
 def georgy_drink(georgy):
     """Function that is called if user chooses to drink on the European or western front"""
@@ -135,7 +200,6 @@ def georgy_drink(georgy):
 
     print("you chose to drink\n")
 
-
 def georgy_sleep(georgy):
     """This function handles when the user chooses to sleep"""
     georgy.heatlh = 300
@@ -143,11 +207,8 @@ def georgy_sleep(georgy):
     for i in range(len(georgy.troop_list)):
         georgy.troop_list[i].health = 100
 
-
 def european_stats(georgy, adolf):
-    german = 0
-    for i in range(len(adolf.troop_list)):
-        german += 1
+    """stats for european front"""
 
     print(f"\nYour energy levels are {georgy.energy} pts")
     print(f"Your health levels are {georgy.health} pts")
@@ -161,8 +222,8 @@ def european_stats(georgy, adolf):
     print(f"There are {len(adolf.tank_list)} Tiger tanks left")
     print(f"You have killed {georgy.score_card} germans")
     print(f"There are {len(adolf.jews)} jews left")
-    print(f"There are {len(adolf.population)} german civilians left\n")
-
+    print(f"There are {len(adolf.population)} german civilians left")
+    print(f"Adolf has acquired {(adolf.score_card)} points\n")
 
 def commit_german_genocide(georgy, adolf):
     """1. Function if you want to commit genocide
@@ -184,7 +245,6 @@ def commit_german_genocide(georgy, adolf):
     for i in range(additions):
         add = adolf_hitler.GermanCivilian()
         adolf.population.append(add)
-
 
 def check_conditions(georgy):
     """Function that for each loop of european or pacific front; checks Zhukov's conditions"""
@@ -220,7 +280,6 @@ def check_conditions(georgy):
     elif georgy.energy <= 0:
         print("You died due to no energy")
 
-
 def moscow_game_version(georgy, adolf):
     """This function handles the European front of the game"""
     choices = ["\n1. Move",
@@ -230,7 +289,7 @@ def moscow_game_version(georgy, adolf):
                "5. Quit",
                "6. View Stats",
                "7. Commit Genocide\n"]
-    europe_cities = EuropeanLocations.cities()
+    georgy.european_locations = EasternEuropeanLocations.cities()
     directions = ["\n1. North",
                   "2. North East",
                   "3. East",
@@ -239,19 +298,19 @@ def moscow_game_version(georgy, adolf):
                   "6. South West",
                   "7. West",
                   "8. North West\n"]
-    current_city = 0
+    georgy.current_city = 0
     alive = False
     choice = None
     while not alive:
         """This while loop keeps looping until Zhukov dies, quits, or runs out of troops"""
-        print(europe_cities[current_city].description)
+        print(georgy.european_locations[georgy.current_city].description)
         for i in range(len(choices)):
             """prints out Zhukov's possible choices"""
             print(choices[i])
-
         first_choice = int(input("what is your choice?: "))
+
         if first_choice == 1:
-            georgy.heatlh -= (random.randrange(1, 25) // 1)
+            georgy.health -= (random.randrange(1, 25) // 1)
             georgy.energy -= (random.randrange(4, 10) // 1)
             georgy.thirst += (random.randrange(1, 5) // 1)
             georgy.hunger += (random.randrange(1, 10) // 1)
@@ -263,81 +322,81 @@ def moscow_game_version(georgy, adolf):
             choice = int(input("which direction do you choose? Remember there are only the specific ones: "))
             if choice == 1:
                 """Choice if you happen to choose to go north"""
-                next_city = europe_cities[current_city].north
-                if europe_cities[current_city].north is None:
+                next_city = georgy.european_locations[georgy.current_city].north
+                if georgy.european_locations[georgy.current_city].north is None:
                     print("Oh no...You can't go that way. Next time read the description.\n")
                 else:
-                    current_city = next_city
+                    georgy.current_city = next_city
                     georgy.distance += (random.randrange(1000, 5000) // 1)
                     random_events(georgy, adolf)
 
             elif choice == 2:
                 """Choice if you happen to choose to go north east"""
-                next_city = europe_cities[current_city].north_east
-                if europe_cities[current_city].north_east is None:
+                next_city = georgy.european_locations[georgy.current_city].north_east
+                if georgy.european_locations[georgy.current_city].north_east is None:
                     print("Oh no...You can't go that way. Next time read the description.\n")
                 else:
-                    current_city = next_city
+                    georgy.current_city = next_city
                     georgy.distance += (random.randrange(1000, 5000) // 1)
                     random_events(georgy, adolf)
 
             elif choice == 3:
                 """Choice if you happen to choose to go east"""
-                next_city = europe_cities[current_city].east
-                if europe_cities[current_city].east is None:
+                next_city = georgy.european_locations[georgy.current_city].east
+                if georgy.european_locations[georgy.current_city].east is None:
                     print("Oh no...You can't go that way. Next time read the description.\n")
                 else:
-                    current_city = next_city
+                    georgy.current_city = next_city
                     georgy.distance += (random.randrange(1000, 5000) // 1)
                     random_events(georgy, adolf)
 
             elif choice == 4:
                 """Choice if you happen to choose to go south east"""
-                next_city = europe_cities[current_city].south_east
-                if europe_cities[current_city].south_east is None:
+                next_city = georgy.european_locations[georgy.current_city].south_east
+                if georgy.european_locations[georgy.current_city].south_east is None:
                     print("Oh no...You can't go that way. Next time read the description.\n")
                 else:
-                    current_city = next_city
+                    georgy.current_city = next_city
                     georgy.distance += (random.randrange(1000, 5000) // 1)
                     random_events(georgy, adolf)
 
             elif choice == 5:
                 """Choice if you happen to choose to go south"""
-                next_city = europe_cities[current_city].south
-                if europe_cities[current_city].south is None:
+                next_city = georgy.european_locations[georgy.current_city].south
+                if georgy.european_locations[georgy.current_city].south is None:
                     print("Oh no...You can't go that way. Next time read the description.\n")
                 else:
-                    current_city = next_city
+                    georgy.current_city = next_city
                     georgy.distance += (random.randrange(1000, 5000) // 1)
                     random_events(georgy, adolf)
 
             elif choice == 6:
                 """Choice if you happen to choose to go south west"""
-                next_city = europe_cities[current_city].south_west
-                if europe_cities[current_city].south_west is None:
+                next_city = georgy.european_locations[georgy.current_city].south_west
+                if georgy.european_locations[georgy.current_city].south_west is None:
                     print("Oh no...You can't go that way. Next time read the description.\n")
                 else:
-                    current_city = next_city
+                    georgy.current_city = next_city
                     georgy.distance += (random.randrange(1000, 5000) // 1)
                     random_events(georgy, adolf)
 
             elif choice == 7:
                 """Choice if you happen to choose to go west"""
-                next_city = europe_cities[current_city].west
-                if europe_cities[current_city].west is None:
+                next_city = georgy.european_locations[georgy.current_city].west
+                if georgy.european_locations[georgy.current_city].west is None:
                     print("Oh no...You can't go that way. Next time read the description.\n")
                 else:
-                    current_city = next_city
+                    georgy.current_city = next_city
                     georgy.distance += (random.randrange(1000, 5000) // 1)
                     random_events(georgy, adolf)
 
             elif choice == 8:
                 """Choice if you happen to choose to go north west"""
-                next_city = europe_cities[current_city].north_west
-                if europe_cities[current_city].north_west is None:
+                next_city = georgy.european_locations[georgy.current_city].north_west
+                if georgy.european_locations[georgy.current_city].north_west is None:
                     print("Oh no...You can't go that way. Next time read the description.\n")
                 else:
-                    current_city = next_city
+                    georgy.current_city = next_city
                     georgy.distance += (random.randrange(1000, 5000) // 1)
                     random_events(georgy, adolf)
             else:
@@ -361,207 +420,38 @@ def moscow_game_version(georgy, adolf):
             alive = True
 
         elif first_choice == 6:
+            """Checking your stats for european front"""
             european_stats(georgy, adolf)
 
         elif first_choice == 7:
+            """committing genocide"""
             commit_german_genocide(georgy, adolf)
 
         else:
             print("Are you blind???? Look at the options")
 
+        adolf_ai.main()
         check_conditions(georgy)
+        soviet_resupply(georgy)
         german_resupply(adolf)
 
-
-def vdladivostok_game_version(georgy, hirohito):
-    """Logic for the Pacific theatre"""
-    choices = ["\n1. Move",
-               "2. Eat",
-               "3. Drink",
-               "4. rest",
-               "5. Quit",
-               "6. Check Stats",
-               "7. Commit Genocide\n"]
-    pacific_cities = PacificLocations.locations()
-    directions = ["\n1. North",
-                  "2. North East",
-                  "3. East",
-                  "4. South East",
-                  "5. South",
-                  "6. South West",
-                  "7. West",
-                  "8. North West\n"]
-    current_city = 0
-    alive = False
-    choice = None
-    while not alive:
-        """This while loop keeps looping until Zhukov dies, quits, or runs out of troops"""
-        print(pacific_cities[current_city].description)
-        for i in range(len(choices)):
-            """prints out Zhukov's possible choices"""
-            print(choices[i])
-
-        first_choice = int(input("what is your choice?: "))
-        if first_choice == 1:
-            georgy.heatlh -= random.randrange(1, 25)
-            georgy.energy -= random.randrange(4, 10)
-            georgy.energy -= random.randrange(4, 8)
-
-            for i in range(len(directions)):
-                """prints out the specific directions Zhukov could take"""
-                print(directions[i])
-
-            choice = int(input("which direction do you choose? Remember there are only the specific ones: "))
-            if choice == 1:
-                """Choice if you happen to choose to go north"""
-                next_city = pacific_cities[current_city].north
-                if pacific_cities[current_city].north is None:
-                    print("Oh no...You can't go that way. Next time read the description.\n")
-                else:
-                    current_city = next_city
-
-            elif choice == 2:
-                """Choice if you happen to choose to go north east"""
-                next_city = pacific_cities[current_city].north_east
-                if pacific_cities[current_city].north_east is None:
-                    print("Oh no...You can't go that way. Next time read the description.\n")
-                else:
-                    current_city = next_city
-
-            elif choice == 3:
-                """Choice if you happen to choose to go east"""
-                next_city = pacific_cities[current_city].east
-                if pacific_cities[current_city].east is None:
-                    print("Oh no...You can't go that way. Next time read the description.\n")
-                else:
-                    current_city = next_city
-
-            elif choice == 4:
-                """Choice if you happen to choose to go south east"""
-                next_city = pacific_cities[current_city].south_east
-                if pacific_cities[current_city].south_east is None:
-                    print("Oh no...You can't go that way. Next time read the description.\n")
-                else:
-                    current_city = next_city
-
-            elif choice == 5:
-                """Choice if you happen to choose to go south"""
-                next_city = pacific_cities[current_city].south
-                if pacific_cities[current_city].south is None:
-                    print("Oh no...You can't go that way. Next time read the description.\n")
-                else:
-                    current_city = next_city
-
-            elif choice == 6:
-                """Choice if you happen to choose to go south west"""
-                next_city = pacific_cities[current_city].south_west
-                if pacific_cities[current_city].south_west is None:
-                    print("Oh no...You can't go that way. Next time read the description.\n")
-                else:
-                    current_city = next_city
-
-            elif choice == 7:
-                """Choice if you happen to choose to go west"""
-                next_city = pacific_cities[current_city].west
-                if pacific_cities[current_city].west is None:
-                    print("Oh no...You can't go that way. Next time read the description.\n")
-                else:
-                    current_city = next_city
-
-            elif choice == 8:
-                """Choice if you happen to choose to go north west"""
-                next_city = pacific_cities[current_city].north_west
-                if pacific_cities[current_city].north_west is None:
-                    print("Oh no...You can't go that way. Next time read the description.\n")
-                else:
-                    current_city = next_city
-            else:
-                print("That choice is invalid; try again.\n")
-        elif first_choice == 2:
-            """reducing hunger"""
-            georgy_eat(georgy)
-
-        elif first_choice == 3:
-            """reducing thirst"""
-            georgy_drink(georgy)
-
-        elif first_choice == 4:
-            """increasing health and energy"""
-            georgy_sleep(georgy)
-
-        elif first_choice == 5:
-            """quitting"""
-            print("You have committed suicide Georgy. Goodbye")
-            alive = True
-
-        else:
-            print("Are you blind???? Look at the options")
-
-        check_conditions(georgy)
-
-
 def main():
-    question_one = False
-    question_two = False
-    choices = ["1. European",
-               "2. Pacific\n"]
-    """Initialization of three loop control variables and location"""
-
     georgy = georgy_zhukov.GeorgyZhukov()
-    recruitment(georgy)
-    t34(georgy)
+    initial_recruitment(georgy)
+    initial_t34_production(georgy)
     civilian_count(georgy)
     """1. Establishment of object georgy based off of class GeorgyZhukov
     2. creation of random amount of soldiers based between 2000 and 6000
     3. creation of 200 to 600 T34 tanks
     4. creation of random amount of civilians
     """
-    while not question_one:
-        print("The year is 1941. Germany and Japan have just declared war on Soviet Russia. The motherland"
-              " has called you to fight by her side.\n")
-        answer = input("do you accept her invitation?: ")
-
-        if answer.lower() == "y":
-            print("Huzzah, you have possibly saved Soviet Russia from ever greater suffering.\n")
-            question_one = True
-
-            for i in range(len(choices)):
-                """12/21 I did not expect that I would have to create this for loop in order to bypass the try block
-                12/21 update: I removed the try blocks
-                """
-                print(choices[i])
-
-            while not question_two:
-                """loop that captures which front you would like to fight in"""
-                answer = int(input("Which theatre do you want to fight in?: "))
-                if answer == 1:
-                    print("transferring to Moscow\n")
-                    adolf = adolf_hitler.AdolfHitler()
-                    german_troops(adolf)
-                    tigers(adolf)
-                    jew_list(adolf)
-                    """1. Establishment of object adolf based off of class AdolfHitler
-                       2. creation of 3000 to 8000 german troops
-                       3. creation of 100 to 400 Tiger tanks
-                       4. creation of 500,000 jews
-                    """
-                    moscow_game_version(georgy, adolf)
-                    question_two = True
-
-                elif answer == 2:
-                    print("transferring to Vdladivostok\n")
-                    hiro_hito = hirohito.Hirohito()
-                    japanese_troops(hiro_hito)
-                    chinese_list(hiro_hito)
-                    vdladivostok_game_version(georgy, hiro_hito)
-                    question_two = True
-
-                else:
-                    print("?????. You're supposed to only answer with a one or two\n")
-
-        elif answer.lower() == "n":
-            """breaks out of the 2nd loop"""
-            print("The Soviets are doomed\n"
-                  "Good bye.")
-            break
-main()
+    adolf = adolf_hitler.AdolfHitler()
+    initial_german_recruitment(adolf)
+    tigers(adolf)
+    jew_list(adolf)
+    """1. Establishment of object adolf based off of class AdolfHitler
+       2. creation of 3000 to 8000 german troops
+       3. creation of 100 to 400 Tiger tanks
+       4. creation of 500,000 jews
+    """
+    moscow_game_version(georgy, adolf)
