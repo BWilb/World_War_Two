@@ -7,16 +7,8 @@ SPRITE_SCALING = 0.5
 SCREEN_WIDTH = 1500
 
 class Europa:
-    def __init__(self, north, north_east, east, south_east, south, south_west, west, north_west):
+    def __init__(self):
         """Creation of variables that will be constraints upon sprite movement"""
-        self.north = north
-        self.north_east = north_east
-        self.east = east
-        self.south_east = south_east
-        self.south = south
-        self.south_west = south_west
-        self.west = west
-        self.north_west = north_west
         self.background = None
         self.germans = None
         self.floor_list = arcade.SpriteList()
@@ -24,7 +16,7 @@ class Europa:
 def city_one():
     """City of Moscow"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    moscow = Europa(None, None, None, None, None, None, None, None)
+    moscow = Europa()
     moscow.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
@@ -54,7 +46,7 @@ def city_one():
 def city_two():
     """City of Stalingrad/Volograd"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    stalingrad = Europa(None, None, None, None, None, None, None, None)
+    stalingrad = Europa()
     stalingrad.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
@@ -84,7 +76,7 @@ def city_two():
 def city_three():
     """City of Kiev"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    kiev = Europa(None, None, None, None, None, None, None, None)
+    kiev = Europa()
     kiev.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
@@ -115,7 +107,7 @@ def city_three():
 def city_four():
     """City of leningrad"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    leningrad = Europa(None, None, None, None, None, None, None, None)
+    leningrad = Europa()
     leningrad.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
@@ -147,7 +139,7 @@ def city_five():
     """Place of Brest-Litvosk"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     new_adolf = adolf_sprite_ai.AdolfHitler("robot_idle.png", SPRITE_SCALING)
-    brest_litvosk = Europa(None, None, None, None, None, None, None, None)
+    brest_litvosk = Europa()
     brest_litvosk.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
@@ -179,7 +171,7 @@ def city_five():
 def city_six():
     """City of Riga"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    riga = Europa(None, None, None, None, None, None, None, None)
+    riga = Europa()
     riga.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
@@ -210,7 +202,7 @@ def city_six():
 def city_seven():
     """City of Warsaw"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    warsaw = Europa(None, None, None, None, None, None, None, None)
+    warsaw = Europa()
     warsaw.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
@@ -241,7 +233,7 @@ def city_seven():
 def city_eight():
     """City of konigsberg"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    konigsberg = Europa(None, None, None, None, None, None, None, None)
+    konigsberg = Europa()
     konigsberg.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
@@ -270,7 +262,7 @@ def city_eight():
 def city_nine():
     """City of Kursk"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    kursk = Europa(None, None, None, None, None, None, None, None)
+    kursk = Europa()
     kursk.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
@@ -299,7 +291,7 @@ def city_nine():
 def city_ten():
     """City of Breslau"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    breslau = Europa(None, None, None, None, None, None, None, None)
+    breslau = Europa()
     breslau.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
@@ -328,7 +320,7 @@ def city_ten():
 def city_eleven():
     """City of Bucharest"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    bucharest = Europa(None, None, None, None, None, None, None, None)
+    bucharest = Europa()
     bucharest.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
@@ -357,7 +349,7 @@ def city_eleven():
 def city_twelve():
     """City of Budapest"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    budapest = Europa(None, None, None, None, None, None, None, None)
+    budapest = Europa()
     budapest.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
@@ -386,7 +378,7 @@ def city_twelve():
 def city_thirteen():
     """City of Prague"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    prague = Europa(None, None, None, None, None, None, None, None)
+    prague = Europa()
     prague.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
@@ -415,7 +407,7 @@ def city_thirteen():
 def city_fourteen():
     """CIty of Stettin"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    stettin = Europa(None, None, None, None, None, None, None, None)
+    stettin = Europa()
     stettin.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
@@ -444,7 +436,7 @@ def city_fourteen():
 def city_fifteen():
     """City of Berlin"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    berlin = Europa(None, None, None, None, None, None, None, None)
+    berlin = Europa()
     berlin.germans = arcade.SpriteList()
 
     for x in range(0, SCREEN_WIDTH, 32):
