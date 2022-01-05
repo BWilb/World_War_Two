@@ -27,6 +27,7 @@ class GeorgyZhukov(arcade.Sprite):
         self.scorecard = 0
         self.armada = []
         self.locations = []
+        self.current_location = 0
 
 class WorldWarTwo(arcade.Window):
     def __init__(self, SCREEN_WIDTH, SCREEN_HEIGHT):
@@ -44,6 +45,7 @@ class WorldWarTwo(arcade.Window):
         self.zhukov.center_x = SCREEN_WIDTH // 2
         self.zhukov.center_y = SCREEN_HEIGHT // 2
         self.player_list.append(self.zhukov)
+        #self.city = east_euro_city_sprite.city_two()
 
         """Create individual cities for city object"""
         #self.physics_engine = arcade.PhysicsEngineSimple(self.zhukov)
@@ -64,12 +66,18 @@ class WorldWarTwo(arcade.Window):
         arcade.draw_lrtb_rectangle_filled(0, SCREEN_WIDTH, 200, 0, arcade.csscolor.BLACK)
         arcade.draw_text(f"Zhukov Score: {self.zhukov.scorecard}", 25, 100, arcade.csscolor.RED)
         arcade.draw_text(f"Zhukov health: {self.zhukov.health}", 25, 150, arcade.csscolor.GOLD)
-        arcade.draw_text(f"Remaining germans: {self.hitler.german_list}", 725, 100, arcade.csscolor.GOLD)
+        arcade.draw_text(f"Remaining germans: {len(self.hitler.german_list)}", 700, 100, arcade.csscolor.GOLD)
+        arcade.draw_text(f"Remaining soviets: {len(self.zhukov.armada)}", 700, 150)
         arcade.draw_text(f"Hitler's score: {self.hitler.score}", 1325, 100, arcade.csscolor.RED)
         arcade.draw_text(f"Hitler's health: {self.hitler.health}", 1325, 150, arcade.csscolor.WHITE)
 
     def on_update(self, delta_time: float):
         self.player_list.update()
+        if self.zhukov.bottom <= 200:
+            self.zhukov.bottom = 200
+            """So that Zhukov does not go out of screen with the scoreboard"""
+        if self.zhukov.top >= SCREEN_HEIGHT:
+            self.zhukov.top = SCREEN_HEIGHT
         #self.hitler.update()
         """add the logic for any scoring for both sides"""
 
