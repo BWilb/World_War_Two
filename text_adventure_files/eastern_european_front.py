@@ -1,10 +1,11 @@
 import georgy_zhukov
 import random
 import adolf_hitler
-import adolf_ai
+from text_adventure_files import adolf_ai
 import EasternEuropeanLocations
 import tanks
 import minorities
+
 
 def initial_recruitment(georgy):
     """creation of 200,000 to 600,000 soviet soldiers"""
@@ -235,6 +236,7 @@ def commit_german_genocide(georgy, adolf):
     kills = random.randrange(len(adolf.population) // 10)
     for genocide in range(kills):
         adolf.population[genocide].health -= random.randrange(kills)
+        print(genocide)
         if adolf.population[genocide].health <= 0:
             adolf.population.remove(adolf.population[genocide])
             kill += 1
@@ -301,6 +303,7 @@ def moscow_game_version(georgy, adolf):
     georgy.current_city = 0
     alive = False
     choice = None
+
     while not alive:
         """This while loop keeps looping until Zhukov dies, quits, or runs out of troops"""
         print(georgy.european_locations[georgy.current_city].description)
@@ -430,7 +433,7 @@ def moscow_game_version(georgy, adolf):
         else:
             print("Are you blind???? Look at the options")
 
-        adolf_ai.main()
+        adolf_ai.main(georgy, adolf)
         check_conditions(georgy)
         soviet_resupply(georgy)
         german_resupply(adolf)
@@ -444,6 +447,7 @@ def main():
     2. creation of random amount of soldiers based between 2000 and 6000
     3. creation of 200 to 600 T34 tanks
     4. creation of random amount of civilians
+    5. creation of 500,000 jews
     """
     adolf = adolf_hitler.AdolfHitler()
     initial_german_recruitment(adolf)

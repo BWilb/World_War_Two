@@ -13,7 +13,7 @@ def main():
               " has called you to fight by her side.\n")
         answer = input("do you accept her invitation?: ")
 
-        if answer.lower() == "y":
+        if answer.lower() == "y" or answer.lower() == "yes":
             print("Huzzah, you have possibly saved Soviet Russia from ever greater suffering.\n")
             question_one = True
 
@@ -44,5 +44,4 @@ def main():
             print("The Soviets are doomed\n"
                   "Good bye.")
             break
-
 main()

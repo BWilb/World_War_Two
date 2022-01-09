@@ -1,6 +1,6 @@
 class Jew:
     def __init__(self):
-        self.heatlh = 500
+        self.health = 500
 
 class Chinese:
     def __init__(self):

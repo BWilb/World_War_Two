@@ -1,26 +1,12 @@
 import random
 
-import hirohito
-import georgy_zhukov
 import PacificLocations
+import minorities
 
 
 """In this file, you don't control anything. This file controls Hirohito's AI.
 Here Zhukov's mission can be made or broken. 
 """
-
-def genocide(hiro):
-    print("Hirohito is committing genocide\n")
-    kills = 0
-    kill = random.randrange(500)
-    for genocide in range(len(hiro.chinese)):
-        hiro.chinese[genocide].health -= random.randrange(kill)
-        if hiro.chinese[genocide].health <= 0:
-            hiro.chinese.remove(hiro.chinese[genocide])
-            hiro.score_card += 1
-            kills += 1
-
-    print(f"Hirohito killed {kills} chinese")
 
 def hirohito_ww2_version(hiro_hito, georgy):
     """Main function that controls Hitler"""
@@ -112,15 +98,34 @@ def hirohito_ww2_version(hiro_hito, georgy):
             break
 
         elif choice == 2:
-            genocide(hiro_hito)
+            kill = 0
+            if len(hiro_hito.chinese) >= 0:
+                print("Hirohito is committing genocide\n")
+                kills = (len(hiro_hito.chinese) // 10)
+                for genocide in range(kills):
+                    hiro_hito.chinese[genocide].health -= random.randrange(150)
+                    print(genocide)
+                    print(hiro_hito.chinese[genocide].health)
+                    if hiro_hito.chinese[genocide].health <= 0:
+                        hiro_hito.chinese.remove(hiro_hito.chinese[genocide])
+                        hiro_hito.score_card += 1
+                        kill += 1
+            elif len(hiro_hito.chinese) <= 0:
+                print("Hirohito ran out of chinese to kill")
+
+            print(f"Hirohito killed {kill} chinese")
+
+            addition = random.randrange(40, 60000)
+            for i in range(addition):
+                chinese = minorities.Chinese()
+                hiro_hito.chinese.append(chinese)
+
             break
 
         elif choice == 3:
-            hiro_hito.troop_list *= (hiro_hito.troop_list) * 10
+            hiro_hito.troop_list *= 2
             print("Hirohito has just improved his propaganda measures\n")
             break
 
-def main():
-    hiro = hirohito.Hirohito()
-    zhukov = georgy_zhukov.GeorgyZhukov()
-    hirohito_ww2_version(hiro, zhukov)
+def main(hiro_hito, zhukov):
+    hirohito_ww2_version(hiro_hito, zhukov)

@@ -6,6 +6,7 @@ import minorities
 import random
 import tanks
 
+
 def initial_soviet_recruitment(georgy):
     """creation of 200,000 to 600,000 soviet soldiers
         and 2,000 to 4,000 T34s
@@ -401,7 +402,7 @@ def vdladivostok_game_version(georgy, hiro_hito):
 
         else:
             print("Are you blind???? Look at the options\n")
-        hirohito_ai.main()
+        hirohito_ai.main(hiro_hito, georgy)
         check_conditions(georgy)
         soviet_recruitment(georgy)
         japanese_recruitment(hiro_hito)

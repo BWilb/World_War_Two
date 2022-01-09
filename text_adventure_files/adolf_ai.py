@@ -1,9 +1,7 @@
 import random
-
-import adolf_hitler
-import georgy_zhukov
 import EasternEuropeanLocations
 import tanks
+import minorities
 
 """In this file, you don't control anything. This file controls Adolf Hitler's AI.
 Here Zhukov's mission can be made or broken. 
@@ -29,7 +27,6 @@ def adolf_ww2_version(adolf, georgy):
                   "8. North West"]
     adolf.current_city = 0
     alive = False
-    choice = None
     while not alive:
         choice = random.randrange(len(choices) // 1)
         """choice variable controls what Hitler's decision will be
@@ -103,16 +100,25 @@ def adolf_ww2_version(adolf, georgy):
             break
 
         elif choice == 2:
-            print("Hitler is committing genocide")
             kill = 0
-            kills = random.randrange(len(adolf.jews) // 10)
-            for genocide in range(kills):
-                adolf.jews[genocide].health -= random.randrange(kills)
-                if adolf.jews[genocide].health <= 0:
-                    adolf.jews.remove(adolf.jews[genocide])
-                    adolf.score_card += 1
-                    kill += 1
-            print(f"Hitler killed {kill} jews")
+            if len(adolf.jews) >= 0:
+                print("\nHitler is committing genocide")
+                kills = (len(adolf.jews) // 10)
+                for i in range(kills):
+                    adolf.jews[i].health -= random.randrange(550)
+                    if adolf.jews[i].health <= 0:
+                        adolf.jews.remove(adolf.jews[i])
+                        adolf.score_card += 1
+                        kill += 1
+                print(f"Hitler killed {kill} jews\n")
+            elif len(adolf.jews) <= 0:
+                print("Hitler ran out of jews to kill\n")
+
+            addition = random.randrange(5, 50000)
+            for i in range(addition):
+                jew = minorities.Jew()
+                adolf.jews.append(jew)
+
             break
 
         elif choice == 3:
@@ -120,15 +126,13 @@ def adolf_ww2_version(adolf, georgy):
             for i in range(production):
                 tank = tanks.TigerTank()
                 adolf.tank_list.append(tank)
-            print("Hitler has just improved his tank production")
+            print("Hitler has just improved his tank production\n")
             break
 
         elif choice == 4:
-            adolf.troop_list *= 10
-            print("Hitler has just improved his propaganda measures")
+            adolf.troop_list *= 2
+            print("Hitler has just improved his propaganda measures\n")
             break
 
-def main():
-    adolf = adolf_hitler.AdolfHitler()
-    zhukov = georgy_zhukov.GeorgyZhukov()
-    adolf_ww2_version(adolf, zhukov)
+def main(georgy, adolf):
+    adolf_ww2_version(adolf, georgy)

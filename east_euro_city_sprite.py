@@ -1,7 +1,8 @@
 import random
 
 import text_adventure_files.adolf_hitler
-import adolf_sprite_ai
+import a
+
 import arcade
 SPRITE_SCALING = 0.5
 SCREEN_WIDTH = 1500
@@ -13,7 +14,7 @@ class Europa:
         self.germans = None
         self.floor_list = arcade.SpriteList()
 
-def city_one():
+def city_one(hitler):
     """City of Moscow"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     moscow = Europa()
@@ -25,7 +26,7 @@ def city_one():
         moscow.floor.center_y = 216
         moscow.floor_list.append(moscow.floor)
     for i in range(len(adolf.troop_list) // 45):
-        moscow.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        moscow.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -37,13 +38,14 @@ def city_one():
 
             if len(german_german) == 0 and len(german_floor_list) == 0:
                 placed = True
+            hitler.german_list.append(moscow.german)
 
         moscow.germans.append(moscow.german)
 
     moscow.background = arcade.load_texture("moscow.jpg")
     return moscow
 
-def city_two():
+def city_two(hitler):
     """City of Stalingrad/Volograd"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     stalingrad = Europa()
@@ -56,7 +58,7 @@ def city_two():
         stalingrad.floor_list.append(stalingrad.floor)
 
     for i in range(len(adolf.troop_list) // 45):
-        stalingrad.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        stalingrad.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -68,12 +70,13 @@ def city_two():
 
             if len(german_german) == 0 and len(german_floor_list) == 0:
                 placed = True
+            hitler.german_list.append(stalingrad.german)
         stalingrad.germans.append(stalingrad.german)
     stalingrad.background = arcade.load_texture("volograd.png")
 
     return stalingrad
 
-def city_three():
+def city_three(hitler):
     """City of Kiev"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     kiev = Europa()
@@ -86,7 +89,7 @@ def city_three():
         kiev.floor_list.append(kiev.floor)
 
     for i in range(len(adolf.troop_list) // 45):
-        kiev.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        kiev.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -98,13 +101,14 @@ def city_three():
 
             if len(german_german) == 0 and len(german_floor_list) == 0:
                 placed = True
+            hitler.german_list.append(kiev.german)
         kiev.germans.append(kiev.german)
 
         kiev.background = arcade.load_texture("kiev.jpg")
 
     return kiev
 
-def city_four():
+def city_four(hitler):
     """City of leningrad"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     leningrad = Europa()
@@ -117,7 +121,7 @@ def city_four():
         leningrad.floor_list.append(leningrad.floor)
 
     for i in range(len(adolf.troop_list) // 45):
-        leningrad.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        leningrad.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -129,16 +133,16 @@ def city_four():
 
             if len(german_german) == 0 and len(german_floor_list) == 0:
                 placed = True
-        leningrad.germans.append(leningrad.german)
+            hitler.german_list.append(leningrad.german)
+            leningrad.germans.append(leningrad.german)
 
         leningrad.background = arcade.load_texture("leningrad.jpg")
 
     return leningrad
 
-def city_five():
+def city_five(hitler):
     """Place of Brest-Litvosk"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
-    new_adolf = adolf_sprite_ai.AdolfHitler("robot_idle.png", SPRITE_SCALING)
     brest_litvosk = Europa()
     brest_litvosk.germans = arcade.SpriteList()
 
@@ -149,7 +153,7 @@ def city_five():
         brest_litvosk.floor_list.append(brest_litvosk.floor)
 
     for i in range(len(adolf.troop_list) // 45):
-        brest_litvosk.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        brest_litvosk.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -161,14 +165,14 @@ def city_five():
 
             if len(german_german) == 0 and len(german_floor_list) == 0:
                 placed = True
-            new_adolf.german_list.append(brest_litvosk.german)
+            hitler.german_list.append(brest_litvosk.german)
         brest_litvosk.germans.append(brest_litvosk.german)
 
         brest_litvosk.background = arcade.load_texture("brest-litvosk.jpg")
 
     return brest_litvosk
 
-def city_six():
+def city_six(hitler):
     """City of Riga"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     riga = Europa()
@@ -181,7 +185,7 @@ def city_six():
         riga.floor_list.append(riga.floor)
 
     for i in range(len(adolf.troop_list) // 45):
-        riga.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        riga.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -199,7 +203,7 @@ def city_six():
 
     return riga
 
-def city_seven():
+def city_seven(hitler):
     """City of Warsaw"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     warsaw = Europa()
@@ -212,7 +216,7 @@ def city_seven():
         warsaw.floor_list.append(warsaw.floor)
 
     for i in range(len(adolf.troop_list) // 45):
-        warsaw.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        warsaw.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -230,7 +234,7 @@ def city_seven():
 
     return warsaw
 
-def city_eight():
+def city_eight(hitler):
     """City of konigsberg"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     konigsberg = Europa()
@@ -243,7 +247,7 @@ def city_eight():
         konigsberg.floor_list.append(konigsberg.floor)
 
     for i in range(len(adolf.troop_list) // 45):
-        konigsberg.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        konigsberg.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -259,7 +263,7 @@ def city_eight():
 
     return konigsberg
 
-def city_nine():
+def city_nine(hitler):
     """City of Kursk"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     kursk = Europa()
@@ -272,7 +276,7 @@ def city_nine():
         kursk.floor_list.append(kursk.floor)
 
     for i in range(len(adolf.troop_list) // 45):
-        kursk.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        kursk.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -288,7 +292,7 @@ def city_nine():
 
     return kursk
 
-def city_ten():
+def city_ten(hitler):
     """City of Breslau"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     breslau = Europa()
@@ -301,7 +305,7 @@ def city_ten():
         breslau.floor_list.append(breslau.floor)
 
     for i in range(len(adolf.troop_list) // 45):
-        breslau.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        breslau.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -317,7 +321,7 @@ def city_ten():
 
     return breslau
 
-def city_eleven():
+def city_eleven(hitler):
     """City of Bucharest"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     bucharest = Europa()
@@ -330,7 +334,7 @@ def city_eleven():
         bucharest.floor_list.append(bucharest.floor)
 
     for i in range(len(adolf.troop_list) // 45):
-        bucharest.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        bucharest.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -346,7 +350,7 @@ def city_eleven():
 
     return bucharest
 
-def city_twelve():
+def city_twelve(hitler):
     """City of Budapest"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     budapest = Europa()
@@ -359,7 +363,7 @@ def city_twelve():
         budapest.floor_list.append(budapest.floor)
 
     for i in range(len(adolf.troop_list) // 45):
-        budapest.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        budapest.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -375,7 +379,7 @@ def city_twelve():
 
     return budapest
 
-def city_thirteen():
+def city_thirteen(hitler):
     """City of Prague"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     prague = Europa()
@@ -388,7 +392,7 @@ def city_thirteen():
         prague.floor_list.append(prague.floor)
 
     for i in range(len(adolf.troop_list) // 45):
-        prague.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        prague.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -404,7 +408,7 @@ def city_thirteen():
 
     return prague
 
-def city_fourteen():
+def city_fourteen(hitler):
     """CIty of Stettin"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     stettin = Europa()
@@ -417,7 +421,7 @@ def city_fourteen():
         stettin.floor_list.append(stettin.floor)
 
     for i in range(len(adolf.troop_list) // 45):
-        stettin.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        stettin.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -433,7 +437,7 @@ def city_fourteen():
 
     return stettin
 
-def city_fifteen():
+def city_fifteen(hitler):
     """City of Berlin"""
     adolf = text_adventure_files.adolf_hitler.AdolfHitler()
     berlin = Europa()
@@ -446,7 +450,7 @@ def city_fifteen():
         berlin.floor_list.append(berlin.floor)
 
     for i in range(len(adolf.troop_list) // 40):
-        berlin.german = adolf_sprite_ai.Germans("zombie_idle.png", SPRITE_SCALING)
+        berlin.german = adolf_sprite_ai.Germans("../zombie_idle.png", SPRITE_SCALING)
         placed = False
         while not placed:
             """Places a german wherever, if they have not been placed in the ground or on top of each other"""
@@ -461,3 +465,8 @@ def city_fifteen():
         berlin.germans.append(berlin.german)
 
     return berlin
+
+def main():
+    print("")
+if __name__ == "__main__":
+    main()

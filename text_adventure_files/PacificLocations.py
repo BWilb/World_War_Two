@@ -67,5 +67,4 @@ def locations():
     sendai.description = ("Sendai Japan. Go south to Tokyo or north to Saporo.")
     pacific.append(sendai)
 
-
     return pacific

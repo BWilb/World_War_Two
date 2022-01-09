@@ -14,6 +14,7 @@ class GeorgyZhukov:
         self.food_list = ["food", "food", "food", "food", "food"]
         self.water_list = ["water", "water", "water", "water", "water"]
         self.population = []
+        self.jews = []
 
 class SovietSoldier:
     def __init__(self):
