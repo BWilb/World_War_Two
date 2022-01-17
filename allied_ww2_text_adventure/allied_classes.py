@@ -9,6 +9,7 @@ class WinstonChurchill:
 class FDR:
     def __init__(self):
         self.health = 450
+        """FDR has lowest health, due to him being crippled"""
         self.troop_list = []
         self.tank_list = []
         self.locations = []
@@ -18,7 +19,7 @@ class FDR:
 
 class CharlesDeGaulle:
     def __init__(self):
-        self.health = 300
+        self.health = 500
         self.troop_list = []
         self.tank_list = []
         self.locations = []
