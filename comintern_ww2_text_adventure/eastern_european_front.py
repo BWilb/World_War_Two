@@ -1,7 +1,7 @@
 import georgy_zhukov
 import random
 import adolf_hitler
-from text_adventure_files import adolf_ai
+import adolf_ai
 import EasternEuropeanLocations
 import tanks
 import minorities
@@ -236,7 +236,6 @@ def commit_german_genocide(georgy, adolf):
     kills = random.randrange(len(adolf.population) // 10)
     for genocide in range(kills):
         adolf.population[genocide].health -= random.randrange(kills)
-        print(genocide)
         if adolf.population[genocide].health <= 0:
             adolf.population.remove(adolf.population[genocide])
             kill += 1

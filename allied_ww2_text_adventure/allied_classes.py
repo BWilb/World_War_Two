@@ -6,6 +6,10 @@ class WinstonChurchill:
         self.locations = []
         self.current_location = 0
 
+class BritishSoldier:
+    def __init__(self):
+        self.heatlh = 500
+
 class FDR:
     def __init__(self):
         self.health = 450
@@ -17,6 +21,10 @@ class FDR:
         self.nukes = ["nuke",
                       "nuke"]
 
+class AmericanSoldier:
+    def __init__(self):
+        self.health = 230
+
 class CharlesDeGaulle:
     def __init__(self):
         self.health = 500
@@ -24,3 +32,6 @@ class CharlesDeGaulle:
         self.tank_list = []
         self.locations = []
         self.current_location = 0
+class FrenchSoldier:
+    def __init__(self):
+        self.health = 100
