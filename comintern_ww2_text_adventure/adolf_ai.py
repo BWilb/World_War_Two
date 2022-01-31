@@ -97,7 +97,7 @@ def adolf_ww2_version(adolf, georgy):
                     print("Adolf wasn't able to move.\n")
                 else:
                     adolf.current_city = next_city
-            break
+            alive = True
 
         elif choice == 2:
             kill = 0
