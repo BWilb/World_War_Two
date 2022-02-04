@@ -32,14 +32,14 @@ def churchill_ww2(church):
             if directional_choice == 1:
                 next_city = church.locations[church.current_city].north
                 if church.locations[church.current_city].north is None:
-                    print("FDR wasn't able to move. Hurrah.\n")
+                    print("Churchill wasn't able to move. Hurrah.\n")
                 else:
                     church.current_city = next_city
 
             elif directional_choice == 2:
                 next_city = church.locations[church.current_city].north_east
                 if church.locations[church.current_city].north_east is None:
-                    print("FDR wasn't able to move. Hurrah\n")
+                    print("Churchill wasn't able to move. Hurrah\n")
                 else:
                     church.current_city = next_city
 
@@ -47,7 +47,7 @@ def churchill_ww2(church):
                 """Choice if you happen to choose to go east"""
                 next_city = church.locations[church.current_city].east
                 if church.locations[church.current_city].east is None:
-                    print("FDR wasn't able to move\n")
+                    print("Churchill wasn't able to move\n")
                 else:
                     church.current_city = next_city
 
@@ -55,7 +55,7 @@ def churchill_ww2(church):
                 """Choice if you happen to choose to go south east"""
                 next_city = church.locations[church.current_city].south_east
                 if church.locations[church.current_city].south_east is None:
-                    print("FDR wasn't able to move.\n")
+                    print("Churchill wasn't able to move.\n")
                 else:
                     church.current_city = next_city
 
@@ -63,7 +63,7 @@ def churchill_ww2(church):
                 """Choice if you happen to choose to go south"""
                 next_city = church.locations[church.current_city].south
                 if church.locations[church.current_city].south is None:
-                    print("FDR wasn't able to move.\n")
+                    print("Churchill wasn't able to move.\n")
                 else:
                     church.current_city = next_city
 
@@ -71,7 +71,7 @@ def churchill_ww2(church):
                 """Choice if you happen to choose to go south west"""
                 next_city = church.locations[church.current_city].south_west
                 if church.locations[church.current_city].south_west is None:
-                    print("FDR wasn't able to move.\n")
+                    print("Churchill wasn't able to move.\n")
                 else:
                     church.current_city = next_city
 
@@ -79,7 +79,7 @@ def churchill_ww2(church):
                 """Choice if you happen to choose to go west"""
                 next_city = church.locations[church.current_city].west
                 if church.locations[church.current_city].west is None:
-                    print("FDR wasn't able to move.\n")
+                    print("Churchill wasn't able to move.\n")
                 else:
                     church.current_city = next_city
 
@@ -87,7 +87,7 @@ def churchill_ww2(church):
                 """Choice if you happen to choose to go north west"""
                 next_city = church.locations[church.current_city].north_west
                 if church.locations[church.current_city].north_west is None:
-                    print("FDR wasn't able to move.\n")
+                    print("Churchill wasn't able to move.\n")
                 else:
                     church.current_city = next_city
             alive = True

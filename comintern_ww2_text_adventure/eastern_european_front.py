@@ -439,6 +439,10 @@ def moscow_game_version(georgy, adolf):
 
 def main():
     georgy = georgy_zhukov.GeorgyZhukov()
+    answer2 = input("Would you like to use nuclear weapons?: ")
+    if(answer2.lower() == "yes" or answer2.lower() == "y"):
+        for i in range(3):
+            georgy.special_weapons.append("nuclear weapon")
     initial_recruitment(georgy)
     initial_t34_production(georgy)
     civilian_count(georgy)

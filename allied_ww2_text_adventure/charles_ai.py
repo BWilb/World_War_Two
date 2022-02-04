@@ -33,14 +33,14 @@ def charles_ww2(charles):
             if directional_choice == 1:
                 next_city = charles.locations[charles.current_city].north
                 if charles.locations[charles.current_city].north is None:
-                    print("FDR wasn't able to move. Hurrah.\n")
+                    print("De Gaulle wasn't able to move. Hurrah.\n")
                 else:
                     charles.current_city = next_city
 
             elif directional_choice == 2:
                 next_city = charles.locations[charles.current_city].north_east
                 if charles.locations[charles.current_city].north_east is None:
-                    print("FDR wasn't able to move. Hurrah\n")
+                    print("De Gaulle wasn't able to move. Hurrah\n")
                 else:
                     charles.current_city = next_city
 
@@ -48,7 +48,7 @@ def charles_ww2(charles):
                 """Choice if you happen to choose to go east"""
                 next_city = charles.locations[charles.current_city].east
                 if charles.locations[charles.current_city].east is None:
-                    print("FDR wasn't able to move\n")
+                    print("De Gaulle wasn't able to move\n")
                 else:
                     charles.current_city = next_city
 
@@ -56,7 +56,7 @@ def charles_ww2(charles):
                 """Choice if you happen to choose to go south east"""
                 next_city = charles.locations[charles.current_city].south_east
                 if charles.locations[charles.current_city].south_east is None:
-                    print("FDR wasn't able to move.\n")
+                    print("De Gaulle wasn't able to move.\n")
                 else:
                     charles.current_city = next_city
 
@@ -64,7 +64,7 @@ def charles_ww2(charles):
                 """Choice if you happen to choose to go south"""
                 next_city = charles.locations[charles.current_city].south
                 if charles.locations[charles.current_city].south is None:
-                    print("FDR wasn't able to move.\n")
+                    print("De Gaulle wasn't able to move.\n")
                 else:
                     charles.current_city = next_city
 
@@ -72,7 +72,7 @@ def charles_ww2(charles):
                 """Choice if you happen to choose to go south west"""
                 next_city = charles.locations[charles.current_city].south_west
                 if charles.locations[charles.current_city].south_west is None:
-                    print("FDR wasn't able to move.\n")
+                    print("De Gaulle wasn't able to move.\n")
                 else:
                     charles.current_city = next_city
 
@@ -80,7 +80,7 @@ def charles_ww2(charles):
                 """Choice if you happen to choose to go west"""
                 next_city = charles.locations[charles.current_city].west
                 if charles.locations[charles.current_city].west is None:
-                    print("FDR wasn't able to move.\n")
+                    print("De Gaulle wasn't able to move.\n")
                 else:
                     charles.current_city = next_city
 
@@ -88,7 +88,7 @@ def charles_ww2(charles):
                 """Choice if you happen to choose to go north west"""
                 next_city = charles.locations[charles.current_city].north_west
                 if charles.locations[charles.current_city].north_west is None:
-                    print("FDR wasn't able to move.\n")
+                    print("De Gaulle wasn't able to move.\n")
                 else:
                     charles.current_city = next_city
             alive = True
